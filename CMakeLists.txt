@@ -8,12 +8,13 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  cmake_modules
   roscpp
   rospy
   std_msgs
   sensor_msgs
 )
-
+find_package(Eigen3 REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -108,8 +109,8 @@ catkin_package(
 #  LIBRARIES dynamics_identification
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+   DEPENDS Eigen3
 )
-
 ###########
 ## Build ##
 ###########
@@ -119,12 +120,16 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${Eigen_INCLUDE_DIRS}
 )
 
+set (LIB_HDR include/algorithm_lib.h)
+set (LIB_SRC src/algorithm_lib.cpp)
+
 ## Declare a C++ library
-#add_library(CSV_WRITER_LIB
-#        src/csv_writer.cpp
-#)
+add_library(${PROJECT_NAME}
+        ${LIB_SRC} ${LIB_HDR}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -149,6 +154,7 @@ add_executable(${PROJECT_NAME}_node src/dynamics_identification_node.cpp)
 # Specify libraries to link a library or executable target against
  target_link_libraries(${PROJECT_NAME}_node
    ${catkin_LIBRARIES}
+         ${PROJECT_NAME}
 #   CSV_WRITER_LIB
  )
 

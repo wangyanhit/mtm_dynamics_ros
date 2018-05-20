@@ -17,6 +17,7 @@
 #include <fstream>
 
 #include "csv_writer.h"
+#include "algorithm_lib.h"
 
 using namespace std;
 
@@ -55,6 +56,11 @@ private:
     ros::Publisher outer_yaw_tar_pos_pub_;
     ros::Publisher shoulder_pitch_tar_pos_pub_;
     ros::Publisher elbow_pitch_tar_pos_pub_;
+    ros::Publisher outer_yaw_tar_eft_pub_;
+    ros::Publisher shoulder_pitch_tar_eft_pub_;
+    ros::Publisher elbow_pitch_tar_eft_pub_;
+    ros::Publisher debug_pub1_;
+    ros::Publisher debug_pub2_;
 
     // Number of Harmonics in the Fourier trajectory
     int n_H = 4;
@@ -64,11 +70,12 @@ private:
 
     double ctrl_freq = 500;
     double sampling_freq = 100;
-    double sampling_start_time = 10;//start sampling after 10s
-    int sampling_num = (int)sampling_freq*10; //sample for 10s
+    double sampling_start_time = 20;//start sampling after 10s
+    int sampling_num = (int)sampling_freq*50; //sample for 10s
     int sampling_cnt = 0;
     int joint_state_cnt = 0;
     double t = 0.0;
+    bool record_data = false;
 
     JointState cur_outer_yaw_state;
     JointState cur_shoulder_pitch_state;
@@ -78,17 +85,30 @@ private:
     vector<JointState> shoulder_pitch_states;
     vector<JointState> elbow_pitch_states;
 
+    algorithm_lib::Filter outer_yaw_velocity_filter;
+    algorithm_lib::Filter shoulder_pitch_velocity_filter;
+    algorithm_lib::Filter elbow_pitch_velocity_filter;
+    shared_ptr<algorithm_lib::ComputedTorqueController> computed_torque_controller;
+
+
     string file_name = "joint_states.csv";
 
     void joint_state_cb(const sensor_msgs::JointState::ConstPtr &msg);
     void init_traj();
     void init_publishers();
     void init_subscribers();
+    void init_filters();
+    void init_record_data();
+    void init_computed_torque_controller();
     double generate_fourier_joint_traj(FourierTrajectory *traj, double t);
     template <typename T>
     void write_vector2file(string file_name, T first, T last);
 
     void write_joint_states2file(string file_name, vector<JointState> *v_j);
+    void publish_excitation_traj2controller(double t);
+    void test_filter(double t);
+
+    void controller();
 };
 
 #endif //PROJECT_DYNAMICS_IDENTIFICATION_NODE_H
