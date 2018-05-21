@@ -79,7 +79,7 @@ namespace algorithm_lib
         {
             a = *a_in;
             b = *b_in;
-            init_z();
+            initilized = false;
         }
 
         double do_filter(double in);
@@ -88,33 +88,29 @@ namespace algorithm_lib
         vector<double> a;
         vector<double> b;
         vector<double> z;
+        bool initilized = false;
 
-        void init_z()
+        void init_z(double value)
         {
             if(z.size() == 0)
             {
-//                std::cout << "z_size: " << z.size() << std::endl;
-//                std::cout << "a_size: " << a.size() << std::endl;
                 if(a.size() > 1)
                 {
                     for(int i = 0; i < a.size()-1; i++)
                     {
-//                        static int cnt = 0;
-//                        cnt++;
-//                        std::cout << "cnt: " << cnt << std::endl;
-                        z.push_back(0);
+                        z.push_back(value);
                     }
                 }
 
             }
-//            else
-//            {
-//                z.resize(a.size()-1);
-//                for(int i = 0; i < a.size()-1; i++)
-//                {
-//                    z[i] = 0;
-//                }
-//            }
+            else
+            {
+                z.resize(a.size()-1);
+                for(int i = 0; i < a.size()-1; i++)
+                {
+                    z[i] = 0;
+                }
+            }
         }
     };
 }

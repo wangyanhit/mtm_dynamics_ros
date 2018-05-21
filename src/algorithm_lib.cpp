@@ -141,6 +141,11 @@ void trajectory_generation(double start, double end, double T, double dt, vector
 double Filter::do_filter(double x)
 {
     auto state_len = z.size();
+    if(!initilized)
+    {
+        init_z(x);
+        initilized = true;
+    }
     double y = b[0]*x + z[0];
     for(int i = 0; i < state_len-1; i++)
     {
