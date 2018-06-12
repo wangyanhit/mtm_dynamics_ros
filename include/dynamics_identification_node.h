@@ -61,6 +61,7 @@ private:
     ros::Publisher elbow_pitch_tar_eft_pub_;
     ros::Publisher debug_pub1_;
     ros::Publisher debug_pub2_;
+    ros::Publisher debug_pub3_;
 
     // Number of Harmonics in the Fourier trajectory
     int n_H = 4;

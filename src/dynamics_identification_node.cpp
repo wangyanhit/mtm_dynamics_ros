@@ -169,6 +169,7 @@ void DynamicIdentification::init_publishers()
 
     debug_pub1_ = nh_.advertise<std_msgs::Float64>("debug1", 1000);
     debug_pub2_ = nh_.advertise<std_msgs::Float64>("debug2", 1000);
+    debug_pub3_ = nh_.advertise<std_msgs::Float64>("debug3", 1000);
 }
 
 void DynamicIdentification::init_filters()
@@ -221,8 +222,8 @@ void DynamicIdentification::init_computed_torque_controller()
             -4.7384,
             -3.4607};
 
-    Eigen::Vector3d kp(500, 500, 500);
-    Eigen::Vector3d kd(50, 50, 50);
+    Eigen::Vector3d kp(300, 300, 300);
+    Eigen::Vector3d kd(10, 10, 10);
     computed_torque_controller = make_shared<algorithm_lib::ComputedTorqueController>(param, kp, kd);
 }
 
@@ -425,6 +426,8 @@ void DynamicIdentification::controller()
     debug_pub1_.publish(msg);
     msg.data = qd[1];
     debug_pub2_.publish(msg);
+    msg.data = qd[2];
+    debug_pub3_.publish(msg);
 
 }
 
