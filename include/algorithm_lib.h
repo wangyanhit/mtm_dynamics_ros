@@ -7,6 +7,8 @@
 #include <vector>
 #include <iostream>
 #include "math.h"
+#include <cmath>
+#include <Eigen/Core>
 
 using namespace std;
 
@@ -28,41 +30,44 @@ namespace algorithm_lib
             }
         }
 
-        ComputedTorqueController(double *p, double *kp, double *kd)
+        ComputedTorqueController(double *p, Eigen::Vector3d &kp_in, Eigen::Vector3d &kd_in)
         {
+            cout << "Initializing param: ";
             for(int i = 0; i < BASE_NUM; i++)
             {
                 param[i] = p[i];
+                cout << ", " << param[i];
             }
-            set_kp(kp);
-            set_kd(kd);
-            std::cout << "p: " << *p << *kp << *kd << std::endl;
+            cout << endl;
+            set_kp(kp_in);
+            set_kd(kd_in);
+            cout << "kp: " << kp(0,0) << kp(1,1) << kp(2,2) << endl;
+            cout << "kd: " << kd(1,1) << kd(1,1) << kd(2,2) << endl;
         }
 
-        void do_computed_torque_control(double *q, double *dq, double *qd, double *dqd, double *ddqd, double *tau);
+        void do_computed_torque_control(Eigen::Vector3d &v_q, Eigen::Vector3d &v_dq, Eigen::Vector3d &v_qd,
+                                        Eigen::Vector3d &v_dqd, Eigen::Vector3d &v_ddqd, Eigen::Vector3d &v_tau);
 
-        void set_kp(double *kp_in)
+        void set_kp(Eigen::Vector3d &kp_in)
         {
-            for(int i = 0; i < DOF; i++)
-            {
-                kp[i] = kp_in[i];
-            }
+            kp.diagonal() << kp_in(0), kp_in(1), kp_in(2);
         }
-        void set_kd(double *kp_in)
+        void set_kd(Eigen::Vector3d &kd_in)
         {
-            for(int i = 0; i < DOF; i++)
-            {
-                kp[i] = kp_in[i];
-            }
+            kd.diagonal() << kd_in(0), kd_in(1), kd_in(2);
         }
 
 
     private:
         double param[BASE_NUM];
-        double kp[DOF];
-        double kd[DOF];
+        Eigen::Matrix3d kp = Eigen::Matrix3d::Zero();
+        Eigen::Matrix3d kd = Eigen::Matrix3d::Zero();
 
         void computed_torque(double *param, double *q, double *dq, double *ddq, double *tau);
+        void gravity_term_torque(double *param, Eigen::Vector3d &v_q, Eigen::Vector3d &v_tau);
+        void coriolis_term_torque(double *param, Eigen::Vector3d &v_q, Eigen::Vector3d &v_dq, Eigen::Vector3d &v_tau);
+        void inertia_matrix(double *param, Eigen::Vector3d &q, Eigen::Matrix3d &M);
+        void friction_torque(double *param, Eigen::Vector3d &v_dq, Eigen::Vector3d &v_tau);
     };
 
     class Filter

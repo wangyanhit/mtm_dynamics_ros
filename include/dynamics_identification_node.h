@@ -69,13 +69,13 @@ private:
     FourierTrajectory elbow_pitch_traj_;
 
     double ctrl_freq = 500;
-    double sampling_freq = 100;
+    double sampling_freq = 200;
     double sampling_start_time = 20;//start sampling after 10s
-    int sampling_num = (int)sampling_freq*50; //sample for 10s
+    int sampling_num = (int)sampling_freq*30; //sample for 10s
     int sampling_cnt = 0;
     int joint_state_cnt = 0;
     double t = 0.0;
-    bool record_data = false;
+    bool record_data = true;
 
     JointState cur_outer_yaw_state;
     JointState cur_shoulder_pitch_state;
@@ -100,7 +100,7 @@ private:
     void init_filters();
     void init_record_data();
     void init_computed_torque_controller();
-    double generate_fourier_joint_traj(FourierTrajectory *traj, double t);
+    void generate_fourier_joint_traj(FourierTrajectory *traj, double t, double *pos, double *vel, double *acc);
     template <typename T>
     void write_vector2file(string file_name, T first, T last);
 

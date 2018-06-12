@@ -121,6 +121,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
+  "/usr/include/eigen3"
 )
 
 set (LIB_HDR include/algorithm_lib.h)
