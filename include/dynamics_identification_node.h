@@ -15,6 +15,7 @@
 #include <string>
 #include <ostream>
 #include <fstream>
+#include <chrono>
 
 #include "csv_writer.h"
 #include "algorithm_lib.h"
@@ -81,6 +82,11 @@ private:
     JointState cur_outer_yaw_state;
     JointState cur_shoulder_pitch_state;
     JointState cur_elbow_pitch_state;
+
+    double cur_outer_yaw_velocity_filtered = 0;
+    double cur_shoulder_pitch_velocity_filtered = 0;
+    double cur_elbow_pitch_velocity_filtered = 0;
+
 
     vector<JointState> outer_yaw_states;
     vector<JointState> shoulder_pitch_states;

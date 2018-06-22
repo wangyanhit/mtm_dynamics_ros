@@ -81,75 +81,74 @@ void DynamicIdentification::init_traj()
 //    double elbow_pitch_b_array[] = {0.2931, -0.3590, 0.4546, 1.5187, 0.7630, 0.1043};
 //    insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
 
-    // This group of parameters are used for identification
+    // Three links large workspace
+//    outer_yaw_traj_.w_f = w_f;
+//    outer_yaw_traj_.q0 = -0.2671;
+//    double outer_yaw_a_array[] = {-0.0126, 0.1521, -0.4967, -0.9091, 0.4326, 1.0577};
+//    int l = sizeof(outer_yaw_a_array)/ sizeof(outer_yaw_a_array[0]);
+//    insert_array2vector(outer_yaw_a_array, l, &outer_yaw_traj_.a);
+//    double outer_yaw_b_array[] = {-0.0831, -0.1240, -0.0640, -1.1942, 0.5220, -1.0503};
+//    insert_array2vector(outer_yaw_b_array, l, &outer_yaw_traj_.b);
+//
+//    shoulder_pitch_traj_.w_f = w_f;
+//    shoulder_pitch_traj_.q0 = -0.6333;
+//    double shoulder_pitch_a_array[] = {-0.2184, 0.2582, 1.1438, 0.3205, -0.2788, -0.4055};
+//    insert_array2vector(shoulder_pitch_a_array, l, &shoulder_pitch_traj_.a);
+//    double shoulder_pitch_b_array[] = {-0.0235, 0.1109, 1.3149, -0.3144, 1.1407, -0.4607};
+//    insert_array2vector(shoulder_pitch_b_array, l, &shoulder_pitch_traj_.b);
+//
+//    elbow_pitch_traj_.w_f = w_f;
+//    elbow_pitch_traj_.q0 =  -0.4857;
+//    double elbow_pitch_a_array[] = {-0.0960, 0.7276, 0.0375, -0.2601, 1.1511, 1.4317};
+//    insert_array2vector(elbow_pitch_a_array, l, &elbow_pitch_traj_.a);
+//    double elbow_pitch_b_array[] = {-0.3521, 0.3395, 0.1980, 0.7716, -0.0042, -0.4743};
+//    insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
+
+    // Three links normal workspace
+//    outer_yaw_traj_.w_f = w_f;
+//    outer_yaw_traj_.q0 = 0.2641;
+//    double outer_yaw_a_array[] = {0.0351, 0.1519, 0.2142, 0.7947, -0.2316, -0.7150};
+//    int l = sizeof(outer_yaw_a_array)/ sizeof(outer_yaw_a_array[0]);
+//    insert_array2vector(outer_yaw_a_array, l, &outer_yaw_traj_.a);
+//    double outer_yaw_b_array[] = {0.0140, -0.2126, 0.1158, -1.3640, 0.8271, 1.0481};
+//    insert_array2vector(outer_yaw_b_array, l, &outer_yaw_traj_.b);
+//
+//    shoulder_pitch_traj_.w_f = w_f;
+//    shoulder_pitch_traj_.q0 = 0.2845;
+//    double shoulder_pitch_a_array[] = {-0.0420, -0.1754, 0.2079, 0.1923, 0.4561, 0.6787};
+//    insert_array2vector(shoulder_pitch_a_array, l, &shoulder_pitch_traj_.a);
+//    double shoulder_pitch_b_array[] = {0.0596, -0.1439, -0.2169, 0.0037, 0.3050, -1.1725};
+//    insert_array2vector(shoulder_pitch_b_array, l, &shoulder_pitch_traj_.b);
+//
+//    elbow_pitch_traj_.w_f = w_f;
+//    elbow_pitch_traj_.q0 =  -0.0974;
+//    double elbow_pitch_a_array[] = {-0.0724, -0.2886, 0.3439, 0.0469, 0.4182, -0.5761};
+//    insert_array2vector(elbow_pitch_a_array, l, &elbow_pitch_traj_.a);
+//    double elbow_pitch_b_array[] = {-0.2074, -0.2296, -0.0259, -0.2567, -0.4009, 1.2461};
+//    insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
+
+    // Three links normal workspace 2
     outer_yaw_traj_.w_f = w_f;
-    outer_yaw_traj_.q0 = -0.2671;
-    double outer_yaw_a_array[] = {-0.0126, 0.1521, -0.4967, -0.9091, 0.4326, 1.0577};
+    outer_yaw_traj_.q0 = 0.0971;
+    double outer_yaw_a_array[] = {-0.0221, -0.2627, 0.6586, -0.0575, 0.1309, 1.3844};
     int l = sizeof(outer_yaw_a_array)/ sizeof(outer_yaw_a_array[0]);
     insert_array2vector(outer_yaw_a_array, l, &outer_yaw_traj_.a);
-    double outer_yaw_b_array[] = {-0.0831, -0.1240, -0.0640, -1.1942, 0.5220, -1.0503};
+    double outer_yaw_b_array[] = {-0.0904, 0.0915, -0.5883, 0.8585, 1.1422, 0.7529};
     insert_array2vector(outer_yaw_b_array, l, &outer_yaw_traj_.b);
 
     shoulder_pitch_traj_.w_f = w_f;
-    shoulder_pitch_traj_.q0 = -0.6333;
-    double shoulder_pitch_a_array[] = {-0.2184, 0.2582, 1.1438, 0.3205, -0.2788, -0.4055};
+    shoulder_pitch_traj_.q0 = 0.4063;
+    double shoulder_pitch_a_array[] = {-0.0914, -0.2402, -0.1351, 0.0137, -1.0750, 0.5630};
     insert_array2vector(shoulder_pitch_a_array, l, &shoulder_pitch_traj_.a);
-    double shoulder_pitch_b_array[] = {-0.0235, 0.1109, 1.3149, -0.3144, 1.1407, -0.4607};
+    double shoulder_pitch_b_array[] = {-0.0764, 0.0463, 0.2593, 0.0137, -0.2987, -0.4217};
     insert_array2vector(shoulder_pitch_b_array, l, &shoulder_pitch_traj_.b);
 
     elbow_pitch_traj_.w_f = w_f;
-    elbow_pitch_traj_.q0 =  -0.4857;
-    double elbow_pitch_a_array[] = {-0.0960, 0.7276, 0.0375, -0.2601, 1.1511, 1.4317};
+    elbow_pitch_traj_.q0 =  -0.1362;
+    double elbow_pitch_a_array[] = {-0.1509, -0.3470, -0.8179, 0.6656, -0.1724, -0.3487};
     insert_array2vector(elbow_pitch_a_array, l, &elbow_pitch_traj_.a);
-    double elbow_pitch_b_array[] = {-0.3521, 0.3395, 0.1980, 0.7716, -0.0042, -0.4743};
+    double elbow_pitch_b_array[] = {0.0291, 0.1289, 0.4177, -0.3767, 0.2190, 0.4922};
     insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
-
-
-    // This group of parameters are used for validation 2
-//    outer_yaw_traj_.w_f = w_f;
-//    outer_yaw_traj_.q0 = -0.3973;
-//    double outer_yaw_a_array[] = {0.1700, -0.3232, 0.6803, -0.1379};
-//    int l = sizeof(outer_yaw_a_array)/ sizeof(outer_yaw_a_array[0]);
-//    insert_array2vector(outer_yaw_a_array, l, &outer_yaw_traj_.a);
-//    double outer_yaw_b_array[] = {-0.0496, -0.4591, -0.8537, -0.0891};
-//    insert_array2vector(outer_yaw_b_array, l, &outer_yaw_traj_.b);
-//
-//    shoulder_pitch_traj_.w_f = w_f;
-//    shoulder_pitch_traj_.q0 = -0.0142;
-//    double shoulder_pitch_a_array[] = {-0.1138, -0.0253, -0.1101, -1};
-//    insert_array2vector(shoulder_pitch_a_array, l, &shoulder_pitch_traj_.a);
-//    double shoulder_pitch_b_array[] = {0.1064, -0.2444, -0.1636, 0.0712};
-//    insert_array2vector(shoulder_pitch_b_array, l, &shoulder_pitch_traj_.b);
-//
-//    elbow_pitch_traj_.w_f = w_f;
-//    elbow_pitch_traj_.q0 = 0.1411;
-//    double elbow_pitch_a_array[] = {-0.2334, 0.0476, -0.3018, -0.5699};
-//    insert_array2vector(elbow_pitch_a_array, l, &elbow_pitch_traj_.a);
-//    double elbow_pitch_b_array[] = {0.0902, -0.0343, 0.3604, -0.0810};
-//    insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
-
-    //This group of parameters are used for validation
-//    outer_yaw_traj_.w_f = w_f;
-//    outer_yaw_traj_.q0 = -0.1312;
-//    double outer_yaw_a_array[] = {0.1460, -0.6157, -0.5789, 0.0703};
-//    int l = sizeof(outer_yaw_a_array)/ sizeof(outer_yaw_a_array[0]);
-//    insert_array2vector(outer_yaw_a_array, l, &outer_yaw_traj_.a);
-//    double outer_yaw_b_array[] = {0.1654, -0.5959, -0.3012, -0.2159};
-//    insert_array2vector(outer_yaw_b_array, l, &outer_yaw_traj_.b);
-//
-//    shoulder_pitch_traj_.w_f = w_f;
-//    shoulder_pitch_traj_.q0 = -0.0405;
-//    double shoulder_pitch_a_array[] = {0.0613, 0.0040, -0.2476, -0.9093};
-//    insert_array2vector(shoulder_pitch_a_array, l, &shoulder_pitch_traj_.a);
-//    double shoulder_pitch_b_array[] = {0.0466, -0.1776, 0.4076, 0.0284};
-//    insert_array2vector(shoulder_pitch_b_array, l, &shoulder_pitch_traj_.b);
-//
-//    elbow_pitch_traj_.w_f = w_f;
-//    elbow_pitch_traj_.q0 = -0.1298;
-//    double elbow_pitch_a_array[] = {-0.1494, 0.1475, -0.5251, -0.4288};
-//    insert_array2vector(elbow_pitch_a_array, l, &elbow_pitch_traj_.a);
-//    double elbow_pitch_b_array[] = {-0.0550, -0.0750, -0.5230, -0.0592};
-//    insert_array2vector(elbow_pitch_b_array, l, &elbow_pitch_traj_.b);
 }
 
 void DynamicIdentification::init_subscribers()
@@ -175,9 +174,9 @@ void DynamicIdentification::init_publishers()
 void DynamicIdentification::init_filters()
 {
     // low-pass filter with sampling freq 1000 Hz, pass freq 40 Hz, stop freq 100, stop amp -40 dB
-//    vector<double> a = {6.581228666848e-06,3.948737200109e-05,9.871843000272e-05, 0.000131624573337,
+//    vector<double> b = {6.581228666848e-06,3.948737200109e-05,9.871843000272e-05, 0.000131624573337,
 //                        9.871843000272e-05,3.948737200109e-05,6.581228666848e-06};
-//    vector<double> b = {1,   -4.844130898248,    9.869891194687,   -10.81429684333,
+//    vector<double> a = {1,   -4.844130898248,    9.869891194687,   -10.81429684333,
 //                        6.714475128551,   -2.238311133546,   0.3127937505226};
 
     // fs 500, fp 10, fs 50, stop amp -40 dB
@@ -186,9 +185,9 @@ void DynamicIdentification::init_filters()
     //fs 500 fp 50
     vector<double> a = {1.0000,   -2.9754 ,   3.8060 ,  -2.5453,    0.8811,   -0.1254};
     vector<double> b = {0.0013,    0.0064,    0.0128,    0.0128,    0.0064,    0.0013};
-    outer_yaw_velocity_filter.set_parameter(&a, &b);
-    shoulder_pitch_velocity_filter.set_parameter(&a, &b);
-    elbow_pitch_velocity_filter.set_parameter(&a, &b);
+    outer_yaw_velocity_filter.set_parameter(a, b);
+    shoulder_pitch_velocity_filter.set_parameter(a, b);
+    elbow_pitch_velocity_filter.set_parameter(a, b);
 }
 
 void DynamicIdentification::init_record_data()
@@ -222,7 +221,7 @@ void DynamicIdentification::init_computed_torque_controller()
             -4.7384,
             -3.4607};
 
-    Eigen::Vector3d kp(300, 300, 300);
+    Eigen::Vector3d kp(250, 250, 250);
     Eigen::Vector3d kd(10, 10, 10);
     computed_torque_controller = make_shared<algorithm_lib::ComputedTorqueController>(param, kp, kd);
 }
@@ -240,6 +239,8 @@ void DynamicIdentification::joint_state_cb(const sensor_msgs::JointState::ConstP
         cur_outer_yaw_state.effort = msg->effort[num];
 
         last_position = cur_outer_yaw_state.position;
+
+        cur_outer_yaw_velocity_filtered = outer_yaw_velocity_filter.do_filter(cur_outer_yaw_state.velocity);
     }
     else
     {
@@ -254,6 +255,8 @@ void DynamicIdentification::joint_state_cb(const sensor_msgs::JointState::ConstP
         cur_shoulder_pitch_state.position = msg->position[num];
         cur_shoulder_pitch_state.velocity = msg->velocity[num];
         cur_shoulder_pitch_state.effort = msg->effort[num];
+
+        cur_shoulder_pitch_velocity_filtered = shoulder_pitch_velocity_filter.do_filter(cur_shoulder_pitch_state.velocity);
     }
     else
     {
@@ -268,6 +271,8 @@ void DynamicIdentification::joint_state_cb(const sensor_msgs::JointState::ConstP
         cur_elbow_pitch_state.position = msg->position[num];
         cur_elbow_pitch_state.velocity = msg->velocity[num];
         cur_elbow_pitch_state.effort = msg->effort[num];
+
+        cur_elbow_pitch_velocity_filtered = elbow_pitch_velocity_filter.do_filter(cur_shoulder_pitch_state.velocity);
     }
     else
     {
@@ -276,16 +281,17 @@ void DynamicIdentification::joint_state_cb(const sensor_msgs::JointState::ConstP
 
     if(record_data)
     {
+//        static ros::Time last_time = ros::Time::now();
+//        ros::Time cur_time = ros::Time::now();
+//        ros::Duration dt = cur_time - last_time;
+//        last_time = cur_time;
+//        ROS_INFO("time diff: %1.8f", dt.toSec());
         if(t >= sampling_start_time)
         {
             int sampling_cnt_base = round(1000/sampling_freq);
             if(joint_state_cnt%sampling_cnt_base == 0)
             {
-//                static ros::Time last_time = ros::Time::now();
-//                ros::Time cur_time = ros::Time::now();
-//                ros::Duration dt = cur_time - last_time;
-//                last_time = cur_time;
-//                ROS_INFO("time diff: %1.8f", dt.toSec());
+
                 if(sampling_cnt < sampling_num)
                 {
                     outer_yaw_states[sampling_cnt] = cur_outer_yaw_state;
@@ -390,6 +396,7 @@ void DynamicIdentification::controller()
 {
     Eigen::Vector3d q(cur_outer_yaw_state.position, cur_shoulder_pitch_state.position, cur_elbow_pitch_state.position);
     Eigen::Vector3d dq(cur_outer_yaw_state.velocity, cur_shoulder_pitch_state.velocity, cur_elbow_pitch_state.velocity);
+    Eigen::Vector3d dq_filtered(cur_outer_yaw_velocity_filtered, cur_shoulder_pitch_velocity_filtered, cur_elbow_pitch_velocity_filtered);
     Eigen::Vector3d qd = Eigen::Vector3d::Zero();
     Eigen::Vector3d dqd = Eigen::Vector3d::Zero();
     Eigen::Vector3d ddqd = Eigen::Vector3d::Zero();
@@ -410,11 +417,19 @@ void DynamicIdentification::controller()
     dqd(2) = vel;
     ddqd(2) = acc;
 
-    computed_torque_controller->do_computed_torque_control(q, dq, qd, dqd, ddqd, tau);
+//    auto start = chrono::system_clock::now();
+    computed_torque_controller->do_computed_torque_control(q, dq, dq_filtered, qd, dqd, ddqd, tau);
+//    auto end = std::chrono::system_clock::now();
+//    chrono::duration<double> dt = end - start;
+//    cout << "duration: " << dt.count() << "s" << endl;// about 30 us
 
     //cout << "pos: " << q[0] << "tau: " << tau[0] << endl;
 
     std_msgs::Float64 msg;
+//    if (joint_state_cnt%4000 > 2000)
+//        msg.data = -0.1;//tau[0];
+//    else
+//        msg.data = 0.1;
     msg.data = tau[0];
     outer_yaw_tar_eft_pub_.publish(msg);
     msg.data = tau[1];
@@ -422,13 +437,22 @@ void DynamicIdentification::controller()
     msg.data = tau[2];
     elbow_pitch_tar_eft_pub_.publish(msg);
 
-    msg.data = qd[0];
+    //msg.data = cur_outer_yaw_velocity_filtered;
+    msg.data = qd(0);
     debug_pub1_.publish(msg);
-    msg.data = qd[1];
+    //msg.data = cur_shoulder_pitch_velocity_filtered;
+    msg.data = qd(1);
     debug_pub2_.publish(msg);
-    msg.data = qd[2];
+    msg.data = qd(2);
+    //msg.data = cur_elbow_pitch_velocity_filtered;
     debug_pub3_.publish(msg);
 
+
+    static auto last_time = chrono::system_clock::now();
+    auto cur_time = chrono::system_clock::now();
+    chrono::duration<double> dt = cur_time - last_time;
+    last_time = cur_time;
+    ROS_INFO("time diff: %1.8f s", dt.count());
 }
 
 

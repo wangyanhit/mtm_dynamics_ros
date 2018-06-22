@@ -124,8 +124,8 @@ include_directories(
   "/usr/include/eigen3"
 )
 
-set (LIB_HDR include/algorithm_lib.h)
-set (LIB_SRC src/algorithm_lib.cpp)
+set (LIB_HDR include/algorithm_lib.h include/imu.h)
+set (LIB_SRC src/algorithm_lib.cpp src/imu.cpp)
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}

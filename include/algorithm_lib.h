@@ -45,8 +45,9 @@ namespace algorithm_lib
             cout << "kd: " << kd(1,1) << kd(1,1) << kd(2,2) << endl;
         }
 
-        void do_computed_torque_control(Eigen::Vector3d &v_q, Eigen::Vector3d &v_dq, Eigen::Vector3d &v_qd,
-                                        Eigen::Vector3d &v_dqd, Eigen::Vector3d &v_ddqd, Eigen::Vector3d &v_tau);
+        void do_computed_torque_control(Eigen::Vector3d &v_q, Eigen::Vector3d &v_dq, Eigen::Vector3d &v_dq_filtered,
+                                        Eigen::Vector3d &v_qd, Eigen::Vector3d &v_dqd, Eigen::Vector3d &v_ddqd,
+                                        Eigen::Vector3d &v_tau);
 
         void set_kp(Eigen::Vector3d &kp_in)
         {
@@ -73,17 +74,17 @@ namespace algorithm_lib
     class Filter
     {
     public:
-        Filter(vector<double> *a_in, vector<double > *b_in)
+        Filter(vector<double> &a_in, vector<double > &b_in)
         {
             set_parameter(a_in, b_in);
         }
 
         Filter(){};
 
-        void set_parameter(vector<double> *a_in, vector<double> *b_in)
+        void set_parameter(vector<double> &a_in, vector<double> &b_in)
         {
-            a = *a_in;
-            b = *b_in;
+            a = a_in;
+            b = b_in;
             initilized = false;
         }
 
